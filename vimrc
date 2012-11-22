@@ -37,6 +37,10 @@ set t_vb=
 
 "colorscheme darkblue
 "colorscheme delek
+if &t_Co > 2                                                                    
+    syntax on                                                                   
+    set hlsearch                                                                
+endif
 
 if &diff
     hi DiffAdd term=reverse cterm=bold ctermbg=green  ctermfg=white

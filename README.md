@@ -4,6 +4,7 @@ vimrc
 My vimrc and plugin files
 
 Usage:
+
     # 1. Backup original vim files
     tar zcf oldvimrc.tgz ~/.vim ~/.vimrc
 

@@ -74,13 +74,10 @@ autocmd BufReadPost *
   \ endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"netrw
-" t: open file in new tab
+" File explorer
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:netrw_browse_split = 3
-let g:netrw_winsize = 30
-let g:netrw_liststyle = 3
-nmap <silent> <leader>f :Vexplore!<cr> 
+let NERDTreeWinPos="right"
+nmap <silent> <leader>f :NERDTreeToggle<cr> 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "tab mappings
@@ -276,16 +273,4 @@ endif
 let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
 let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => trinity
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Open and close all the three plugins on the same time 
-nmap <F8> :TrinityToggleAll<CR> 
-" Open and close the srcexpl.vim separately 
-nmap <F9> :TrinityToggleSourceExplorer<CR> 
-" Open and close the taglist.vim separately 
-nmap <F10> :TrinityToggleTagList<CR> 
-" Open and close the NERD_tree.vim separately 
-nmap <F11> :TrinityToggleNERDTree<CR> 
 

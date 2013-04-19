@@ -29,6 +29,7 @@ set smarttab
 set wildmenu "Turn on Wild menu
 set incsearch "Make search act like search in modern browsers
 " set foldcolumn=4
+set pastetoggle=<F12>
 
 " No sound on errors
 set noerrorbells
@@ -36,7 +37,7 @@ set novisualbell
 set t_vb=
 
 "colorscheme darkblue
-"colorscheme delek
+colorscheme delek
 if &t_Co > 2                                                                    
     syntax on                                                                   
     set hlsearch                                                                
@@ -72,12 +73,6 @@ autocmd BufReadPost *
   \ if line("'\"") > 0 && line ("'\"") <= line("$") |
   \   exe "normal! g'\"" |
   \ endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" File explorer
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let NERDTreeWinPos="right"
-nmap <silent> <leader>f :NERDTreeToggle<cr> 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "tab mappings
@@ -171,20 +166,6 @@ let g:tagbar_left = 1
 let g:tagbar_autofocus = 1
 map <silent> <leader>tt :TagbarToggle<cr>
 
-""""""""""""""""""""""""""""""
-" BufExplorer
-" To start exploring in the current window, use: >
-"  ;be   or   :BufExplorer
-" To start exploring in a newly split horizontal window, use: >
-"  ;bs   or   :BufExplorerHorizontalSplit
-" To start exploring in a newly split vertical window, use: >
-"  ;bv   or   :BufExplorerVerticalSplit
-""""""""""""""""""""""""""""""
-let g:bufExplorerDefaultHelp=0       " Do not show default help.
-let g:bufExplorerShowRelativePath=1  " Show relative paths.
-let g:bufExplorerSplitBelow=1        " Split new window below current.
-let g:bufExplorerSplitRight=1        " Split right.
-
 """"""""""""""""""""""""""""""""""""
 " => C/C++ Python Javascript HTML
 """"""""""""""""""""""""""""""""""""
@@ -221,11 +202,6 @@ nmap <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Pressing ;ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
-"Shortcuts using <leader>
-map <leader>sn ]s
-map <leader>sp [s
-map <leader>sa zg
-map <leader>sl z=
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => neocomplcache
@@ -273,4 +249,53 @@ endif
 let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
 let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
+
+" fuzzyfinder
+let g:fuf_modesDisable = []
+let g:fuf_mrufile_maxItem = 400
+let g:fuf_mrucmd_maxItem = 400
+nnoremap <silent> <leader>sj     :FufBuffer<CR>
+nnoremap <silent> <leader>sk     :FufFileWithCurrentBufferDir<CR>
+nnoremap <silent> <leader>sK     :FufFileWithFullCwd<CR>
+nnoremap <silent> <leader>sf     :FufFile<CR>
+nnoremap <silent> <leader>sl     :FufCoverageFileChange<CR>
+nnoremap <silent> <leader>sL     :FufCoverageFileChange<CR>
+nnoremap <silent> <leader>s<C-l> :FufCoverageFileRegister<CR>
+nnoremap <silent> <leader>sd     :FufDirWithCurrentBufferDir<CR>
+nnoremap <silent> <leader>sD     :FufDirWithFullCwd<CR>
+nnoremap <silent> <leader>s<C-d> :FufDir<CR>
+nnoremap <silent> <leader>sn     :FufMruFile<CR>
+nnoremap <silent> <leader>sN     :FufMruFileInCwd<CR>
+nnoremap <silent> <leader>sm     :FufMruCmd<CR>
+nnoremap <silent> <leader>su     :FufBookmarkFile<CR>
+nnoremap <silent> <leader>s<C-u> :FufBookmarkFileAdd<CR>
+vnoremap <silent> <leader>s<C-u> :FufBookmarkFileAddAsSelectedText<CR>
+nnoremap <silent> <leader>si     :FufBookmarkDir<CR>
+nnoremap <silent> <leader>s<C-i> :FufBookmarkDirAdd<CR>
+nnoremap <silent> <leader>st     :FufTag<CR>
+nnoremap <silent> <leader>sT     :FufTag!<CR>
+nnoremap <silent> <leader>s<C-]> :FufTagWithCursorWord!<CR>
+nnoremap <silent> <leader>s,     :FufBufferTag<CR>
+nnoremap <silent> <leader>s<     :FufBufferTag!<CR>
+vnoremap <silent> <leader>s,     :FufBufferTagWithSelectedText!<CR>
+vnoremap <silent> <leader>s<     :FufBufferTagWithSelectedText<CR>
+nnoremap <silent> <leader>s}     :FufBufferTagWithCursorWord!<CR>
+nnoremap <silent> <leader>s.     :FufBufferTagAll<CR>
+nnoremap <silent> <leader>s>     :FufBufferTagAll!<CR>
+vnoremap <silent> <leader>s.     :FufBufferTagAllWithSelectedText!<CR>
+vnoremap <silent> <leader>s>     :FufBufferTagAllWithSelectedText<CR>
+nnoremap <silent> <leader>s]     :FufBufferTagAllWithCursorWord!<CR>
+nnoremap <silent> <leader>sg     :FufTaggedFile<CR>
+nnoremap <silent> <leader>sG     :FufTaggedFile!<CR>
+nnoremap <silent> <leader>so     :FufJumpList<CR>
+nnoremap <silent> <leader>sp     :FufChangeList<CR>
+nnoremap <silent> <leader>sq     :FufQuickfix<CR>
+nnoremap <silent> <leader>sy     :FufLine<CR>
+nnoremap <silent> <leader>sh     :FufHelp<CR>
+nnoremap <silent> <leader>se     :FufEditDataFile<CR>
+nnoremap <silent> <leader>sr     :FufRenewCache<CR>
+
+" netrw
+let g:netrw_winsize = 30
+nmap <silent> <leader>fe :Sexplore!<cr>
 

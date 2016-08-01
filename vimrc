@@ -1,47 +1,51 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" MaWenqi's vimrc
-" Note: Only for Unix/Linux and NO GUI
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
-   set fileencodings=utf-8,latin1
-endif
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-set nocompatible	" Use Vim defaults (much better!)
-filetype plugin indent on
+set rtp+=/root/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-set history=100		" keep 100 lines of command line history
-set bs=2		" allow backspacing over everything in insert mode
-set ruler		" show the cursor position all the time
-set autoread    " auto read when a file is changed from the outside
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'surround.vim'
+Plugin 'a.vim'
+Plugin 'L9'
+Plugin 'FuzzyFinder'
+Plugin 'matchit.zip'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'neocomplcache'
+Plugin 'majutsushi/tagbar'
+Plugin 'tpope/vim-fugitive'
+Plugin 'nvie/vim-flake8'
+Plugin 'mhinz/vim-startify'
+Plugin 'vim-scripts/indentpython.vim'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+set bs=2       " allow backspacing over everything in insert mode
+set autoread   " auto read when a file is changed from the outside
 set nu
 set nobackup
 set nowb
 set showcmd
 set shell=/bin/bash
 set encoding=utf8
+set fileencodings=utf-8,gbk
 set ffs=unix
 set modeline
 set smartindent
 set expandtab
 set shiftwidth=4
-set tabstop=4
 set smarttab
-set wildmenu "Turn on Wild menu
-set incsearch "Make search act like search in modern browsers
-" set foldcolumn=4
+set hlsearch
+set incsearch 
 set pastetoggle=<F12>
-
-" No sound on errors
 set noerrorbells
 set novisualbell
 set t_vb=
 
-"colorscheme darkblue
-colorscheme delek
-if &t_Co > 2                                                                    
-    syntax on                                                                   
-    set hlsearch                                                                
-endif
+syntax on
+colorscheme darkblue
+"colorscheme delek
 
 if &diff
     hi DiffAdd term=reverse cterm=bold ctermbg=green  ctermfg=white
@@ -50,10 +54,8 @@ if &diff
     hi DiffDelete term=reverse cterm=bold ctermbg=yellow ctermfg=black
 endif
 
-if v:version >= 703
-    set cc=80
-    hi ColorColumn ctermbg=lightgrey guibg=lightgrey
-endif
+set cc=80
+hi ColorColumn ctermbg=lightgrey guibg=lightgrey
 
 map <C-Z> :shell<cr>
 map <C-j> <C-W>j
@@ -166,42 +168,13 @@ let g:tagbar_left = 1
 let g:tagbar_autofocus = 1
 map <silent> <leader>tt :TagbarToggle<cr>
 
-""""""""""""""""""""""""""""""""""""
-" => C/C++ Python Javascript HTML
-""""""""""""""""""""""""""""""""""""
-au FileType c,cpp map <buffer> <leader><space> :w<cr>:make<cr><cr>
-au FileType c,cpp setlocal noet sw=8 ts=8
-"Use :Man function-name or <leader>K to load manual in a split window
-au FileType c,cpp source $VIMRUNTIME/ftplugin/man.vim
-
-let python_highlight_all = 1
-au FileType python set nocindent
-au FileType python syn keyword pythonDecorator True None False self
-
-au FileType javascript setl fen nocindent
-
-au FileType html set ft=xml
-au FileType html set syntax=htm
-
-""""""""""""""""""""""""""""""
-" => Vim grep
-""""""""""""""""""""""""""""""
-let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
-set grepprg=/bin/grep\ -nH
-
 """"""""""""""""""""""""""""""
 " => quickfix
 """"""""""""""""""""""""""""""
-nmap <leader>cn :cn<cr>
+nmap <leader>nn :cn<cr>
 nmap <leader>cp :cp<cr>
 nmap <leader>cw :cw 10<cr>
 nmap <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Spell checking
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Pressing ;ss will toggle and untoggle spell checking
-map <leader>ss :setlocal spell!<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => neocomplcache

@@ -1,5 +1,12 @@
 #!/bin/bash
 
+initvim()
+{
+    mkdir  -p ~/.vim/bundle
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    # open vim and run :PluginInstall
+}
+
 UpdateYumRepo()
 {
     if grep -q CentOS /etc/redhat-release; then     
